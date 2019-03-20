@@ -13,34 +13,30 @@ discovered = discovered.concat(adjacentNodes)
 return discoverOrder
 }
 
-function findAdjacent(no)
+function findAdjacent(nodeName, vertices, edges){
+  return edges.filter(function(edge){
+    return edge.includes(nodeName)
+  }).map(funcion(edge){
+    return edge.filter(function(node){
+      return (node != nodeName)
+    })[0]
+  }).map(function(name){
+    return findNode(name, vertices)
+  }).filter(function(node){
+    return node.distances == null;
+  })
+}
 
+function markDistanceAndPredecessor(predecessor, adjacentNOdes){
+  adjacentNodes.map(function(node){
+    node.distance = predecessor.distance + 1;
+    node.predecessor = predecessor;
+  })
+}
 
-// function findAdjacent(nodeName,  vertices, edges){
-//   return edges.filter(function(edge){
-//     return edge.includes(nodeName)
-//   }).map(function(edge){
-//     return edge.filter(function(node){
-//       return (node != nodeName)
-//     })[0]
-//   }).map(function(name){
-//     return findNode(name, vertices)
-//   }).filter(function(node){
-//     return node.distance == null;
-//   })
-// }
+function findNode(nodeName, vertices){
+  return vertices.find(function(vertex){
+    return vertex.name == nodeName
+  })
+}
 
-// function markDistanceAndPredecessor(predecessor, adjacentNodes){
-//   adjacentNodes.map(function(node){
-//     node.distance = predecessor.distance + 1;
-//     node.predecessor = predecessor;
-//   })
-// }
-
-
-
-// function findNode(nodeName, vertices){
-//   return vertices.find(function(vertex){
-//     return vertex.name == nodeName
-//   })
-// }
